@@ -29,7 +29,7 @@ public class XmlToObjectTest extends TestCase {
 		assertEquals(1, result.size());
 		assertTrue(result.get("hello") instanceof List);
 
-		List list = (List) result.get("hello");
+		List<?> list = (List<?>) result.get("hello");
 		assertEquals(3, list.size());
 		assertEquals("world1", list.get(0));
 		assertEquals("world2", list.get(1));

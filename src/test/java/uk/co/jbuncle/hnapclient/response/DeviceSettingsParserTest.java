@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import junit.framework.TestCase;
-import org.apache.commons.io.IOUtils;
 import uk.co.jbuncle.hnapclient.util.xml.XmlToObject;
 
 /**
@@ -20,9 +19,7 @@ public class DeviceSettingsParserTest extends TestCase {
 	public void testCreateFromResponse() throws Exception {
 		System.out.println("createFromResponse");
 
-		final String xml = IOUtils.toString(
-				DeviceSettingsParserTest.class.getClassLoader().getResourceAsStream(
-						"uk/co/jbuncle/hnapclient/response/DeviceSettings.xml"));
+		final String xml = new String(getClass().getClassLoader().getResourceAsStream("uk/co/jbuncle/hnapclient/response/DeviceSettings.xml").readAllBytes());
 
 		final Map<String, Object> responseProperties = XmlToObject.fromXml(xml);
 
