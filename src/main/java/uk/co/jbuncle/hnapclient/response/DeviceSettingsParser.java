@@ -32,13 +32,18 @@ public class DeviceSettingsParser {
         deviceSettings.setPresentationUrl((String) responseProperties.get("PresentationURL"));
 
         final List<String> moduleTypes = new LinkedList<>();
-        for (final Object object : (List) ((Map) responseProperties.get("ModuleTypes")).get("string")) {
-            moduleTypes.add((String) object);
+
+        final Map<?, ?>  moduleTypesMap = ((Map<?, ?>) responseProperties.get("ModuleTypes"));
+        if (moduleTypesMap != null) {
+            for (final Object object : (List<?>) moduleTypesMap.get("string")) {
+                moduleTypes.add((String) object);
+            }
         }
+
         deviceSettings.setModuleTypes(moduleTypes);
 
         final List<URL> soapActions = new LinkedList<>();
-        for (final Object object : (List) ((Map) responseProperties.get("SOAPActions")).get("string")) {
+        for (final Object object : (List<?>) ((Map<?, ?>) responseProperties.get("SOAPActions")).get("string")) {
             final String urlString = (String) object;
             final URL url = new URL(urlString);
             soapActions.add(url);
